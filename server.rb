@@ -9,7 +9,12 @@ get '/' do
 end
 
 post '/' do
-  @codes = decode_plate(params['uploaded_data'][:tempfile])
+  unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
+    return erb :index
+  end
+  File.open("tmp/scan.tiff", "wb") { |f| f.write(tmpfile.read) }
+  
+  @codes = decode_plate("tmp/scan.tiff")
   @letters = ['','A','B','C','D','E','F','G','H']
   # @codes is: (A12-H12, A11-H11, etc)
   erb :results
