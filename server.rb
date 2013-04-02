@@ -4,6 +4,7 @@ class Tube < ActiveRecord::Base
 end
 
 get '/' do 
+  logger.info `echo $PATH`
   erb :index
 end
 
