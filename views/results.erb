@@ -1,0 +1,27 @@
+<table border="1">
+<% for row in 0..8 %>
+	<tr>
+		<td><%= @letters[row] %></td>
+	<% for column in (12).downto(1) %>
+		<% if row==0 %>
+			<td><%= 13-column %></td>
+		<% else %>
+			<td><%= @codes[(column-1)*8+row-1] %></td>
+		<% end %>
+	<% end %>
+	</tr>
+<% end %>
+</table>
+
+<table border="1">
+		<% for row in 1..8 %>
+			<% for column in (12).downto(1) %>
+				<tr>
+					<td><%= @letters[row] %><%= 13-column %></td>
+					<td><%= @codes[(column-1)*8+row-1] %></td>
+				</tr>
+			<% end %>
+		<% end %>
+</table>
+
+
