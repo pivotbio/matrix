@@ -3,6 +3,9 @@
 require 'bundler'
 Bundler.require
 
+require './lib/decode_plate.rb'
+
+
 get '/' do
   logger.info `echo $PATH`
   erb :index
