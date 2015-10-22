@@ -3,7 +3,7 @@ require 'json'
 class Tube < ActiveRecord::Base
 end
 
-get '/' do 
+get '/' do
   logger.info `echo $PATH`
   erb :index
 end
@@ -13,7 +13,7 @@ post '/' do
     return erb :index
   end
   File.open("tmp/scan.tiff", "wb") { |f| f.write(tmpfile.read) }
-  
+
   @codes = decode_plate("tmp/scan.tiff")
   @letters = ['','A','B','C','D','E','F','G','H']
   # @codes is: (A12-H12, A11-H11, etc)
