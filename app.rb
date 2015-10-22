@@ -1,4 +1,7 @@
-require 'json'
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.require
 
 get '/' do
   logger.info `echo $PATH`
