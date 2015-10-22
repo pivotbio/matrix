@@ -8,4 +8,5 @@
 Icon?
 ehthumbs.db
 Thumbs.db
-tmp
+tmp/*.tif
+tmp/*.tiff
