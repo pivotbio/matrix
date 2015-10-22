@@ -1,8 +1,5 @@
 require 'json'
 
-class Tube < ActiveRecord::Base
-end
-
 get '/' do
   logger.info `echo $PATH`
   erb :index
