@@ -13,6 +13,9 @@ $ brew install imagemagick dmtx-utils
 
 $ bundle
 
+# run tests
+$ bundle exec rspec
+
 # start web-app
 $ bundle exec rackup
 
