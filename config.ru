@@ -4,8 +4,7 @@ require 'active_record'
 require 'fileutils'
 
 set :root, File.dirname(__FILE__)
-require './server'
-require './decode'
+require './app.rb'
 
 enable :logging
 
