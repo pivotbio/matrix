@@ -4,7 +4,7 @@
 
 ## Installation
 
-(mac)
+### Mac
 
 ```sh
 # install dependencies
@@ -21,3 +21,7 @@ $ bundle exec rackup
 
 # then open http://localhost:9292
 ```
+
+### Linux
+
+See `Dockerfile` for inspiration.
