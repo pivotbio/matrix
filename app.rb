@@ -3,6 +3,10 @@
 require 'bundler'
 Bundler.require
 
+set :root, File.dirname(__FILE__)
+
+enable :logging
+
 require './lib/decode_plate.rb'
 
 
