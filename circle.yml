@@ -1,0 +1,11 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker build -t pivot/matrix .
+
+test:
+  override:
+    - docker run pivot/matrix
