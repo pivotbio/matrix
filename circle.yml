@@ -9,3 +9,9 @@ dependencies:
 test:
   override:
     - docker run pivot/matrix
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: pivot-matrix
