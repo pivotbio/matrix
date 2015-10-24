@@ -1,9 +1,15 @@
+<h1><img src="/agent.jpeg">Matrix Scanner</h1>
+
 <h3>Upload a Scanned Matrix Plate</h3>
-<form action="/" method="post" enctype="multipart/form-data">
-  <div class="form_field">
-    <input type="file" name="file">
-	<input type="submit" value="Upload">
+
+<form action="/" method="post" enctype="multipart/form-data", class="form">
+  <div class="form-field">
+    <span class="btn btn-default btn-file">
+      <input type="file" name="file">
+    </span>
+	<input type="submit" value="Upload" class="btn btn-primary">
   </div>
 </form>
+
 <h5>This requires a 600dpi scan of the plate like so:</h5>
 <image src="example.png">
