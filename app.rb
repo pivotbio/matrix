@@ -21,10 +21,14 @@ post '/' do
   end
   File.open("tmp/scan.tiff", "wb") { |f| f.write(tmpfile.read) }
 
-  @codes = decode_plate("tmp/scan.tiff")
-  @letters = ['','A','B','C','D','E','F','G','H']
-  # @codes is: (A12-H12, A11-H11, etc)
-  erb :results
+  begin
+    @codes = decode_plate("tmp/scan.tiff")
+    @letters = ['','A','B','C','D','E','F','G','H']
+  rescue DecodeError => @message
+    erb :error
+  else
+    erb :results
+  end
 end
 
 
