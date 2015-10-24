@@ -9,8 +9,6 @@ end
 
 def decode_plate(filename)
 
-  output = "tmp/output"
-
   # Decode
   codes = Array.new
 
@@ -31,9 +29,9 @@ def decode_plate(filename)
     (0..95).each do |i|
       code = `dmtxread -S2 -e 30 -E 40 -s 12x12 -q 10 -t 10 -n #{output}_tile_small_#{i}.tif`
       if code == ""
-        code_try_2 = `dmtxread -S2 -n #{output}_tile_small_#{i}.tif`
+        code_try_2 = system_or_error("dmtxread -S2 -n #{output}_tile_small_#{i}.tif")
         if code_try_2 == ""
-          code_try_3 = `dmtxread -n #{output}_tile_small_#{i}.tif`
+          code_try_3 = system_or_error("dmtxread -n #{output}_tile_small_#{i}.tif")
           code = code_try_3
         else
           code = code_try_2
