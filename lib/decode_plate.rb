@@ -14,7 +14,7 @@ def decode_plate(filename)
 
   Dir.mktmpdir do |tmp_dir|
 
-    output = File.join(tmp_dir, 'output')
+    output = File.join(tmp_dir, "#{Time.now.to_i}")
 
     # Convert: format = Scan_600.tiff
     crop = system_or_error "convert #{filename} -crop 1664x2556+165+188 +repage #{output}_crop.tiff"
