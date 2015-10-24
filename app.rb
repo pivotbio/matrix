@@ -19,10 +19,13 @@ post '/' do
   unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
     return erb :index
   end
-  File.open("tmp/scan.tiff", "wb") { |f| f.write(tmpfile.read) }
+
+  filename = File.join('uploads', "#{Time.now.to_i}.tiff")
+
+  File.open(filename, "wb") { |f| f.write(tmpfile.read) }
 
   begin
-    @codes = decode_plate("tmp/scan.tiff")
+    @codes = decode_plate(filename)
     @letters = ['','A','B','C','D','E','F','G','H']
   rescue DecodeError => @message
     erb :error
