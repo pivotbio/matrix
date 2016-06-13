@@ -1,19 +1,16 @@
-FROM ubuntu
+FROM ruby:2.2.0
 
-RUN sudo apt-get update --fix-missing
-RUN sudo apt-get install -y \
+RUN apt-get update -qq
+
+RUN apt-get install -y \
   build-essential \
-  ruby \
-  ruby-dev \
+  libpq-dev \
   imagemagick \
   libmagickwand-dev \
   dmtx-utils
 
-ADD . work
-WORKDIR work
-
-RUN gem install bundler
-
+RUN mkdir /app
+WORKDIR /app
+ADD Gemfile /app/Gemfile
 RUN bundle install
-
-ENTRYPOINT bundle exec rspec
+ADD . /app
