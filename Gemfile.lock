@@ -9,6 +9,7 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rake (10.4.2)
     rmagick (2.15.4)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
@@ -37,9 +38,7 @@ DEPENDENCIES
   fileutils
   json
   pg
+  rake
   rspec
   sequel
   sinatra
-
-BUNDLED WITH
-   1.10.6
