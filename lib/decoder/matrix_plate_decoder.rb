@@ -19,7 +19,8 @@ module Decoder
     def scan_plate
       well_images.map do |i, j, well|
         value = decode(well)
-        well.write("#{i}-#{j}-#{value || 'nil'}.jpeg")
+        well.write("#{i}-#{j}-#{value || 'nil'}.png")
+        p value
         value
       end
     end
@@ -29,7 +30,7 @@ module Decoder
     end
 
     def decode well
-      matrix_decoder.decode(well)
+      matrix_decoder.decode(well.path)
     end
 
     # yield wells as separate images
@@ -39,7 +40,10 @@ module Decoder
           8.times.map do |col|
             x = S_x + (col * S_bx) + (col * S_w)
             y = S_y + (row * S_by) + (row * S_h)
-            cell = image.crop("#{S_w}x#{S_h}+#{x}+#{y}")
+            cell = image.
+              crop("#{S_w}x#{S_h}+#{x}+#{y}").
+              negate.
+              contrast
             enum.yield(row, col, cell)
           end
         end
