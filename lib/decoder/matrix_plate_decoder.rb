@@ -13,8 +13,8 @@ module Decoder
     S_h  = 180
     CROP = 10
 
-    def initialize(scan_path, timeout: 5)
-      @timeout = timeout
+    def initialize(scan_path, kwargs={})
+      @timeout = Integer(kwargs[:timeout] || 5)
       super(scan_path)
     end
 

@@ -20,4 +20,11 @@ describe Decoder::API do
     expect { JSON.parse(last_response.body) }.to_not raise_error
     expect(JSON.parse(last_response.body)).to be_a(Array)
   end
+
+  it 'put / takes a timeout attribute' do
+    post('/', image: upload, timeout: 10)
+    expect(last_response).to be_ok
+    expect { JSON.parse(last_response.body) }.to_not raise_error
+    expect(JSON.parse(last_response.body)).to be_a(Array)
+  end
 end

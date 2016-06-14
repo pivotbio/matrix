@@ -7,7 +7,9 @@ module Decoder
     end
 
     post '/' do
-      MatrixPlateDecoder.new(params[:image][:tempfile].path).codes.to_json
+      image_path = params[:image][:tempfile].path
+      timeout = params[:timeout]
+      MatrixPlateDecoder.new(image_path, timeout: timeout).codes.to_json
     end
   end
 end
