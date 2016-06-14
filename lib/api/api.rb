@@ -2,6 +2,11 @@ require 'json'
 
 module Decoder
   class API < Sinatra::Base
+
+    configure do
+      set :port, 6969
+    end
+
     get '/' do
       'example usage'
     end
