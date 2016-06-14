@@ -19,9 +19,7 @@ module Decoder
 
     def scan_plate
       well_images.map do |i, j, well|
-        value = scan_well(well)
-        well.write("#{i}-#{j}-#{value || 'nil'}.png")
-        value
+        scan_well(well)
       end
     end
 
