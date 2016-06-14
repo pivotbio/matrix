@@ -5,6 +5,7 @@ module Decoder
 
     configure do
       set :port, ENV['PORT'] || 6969
+      set :bind, '0.0.0.0'
     end
 
     get '/' do
