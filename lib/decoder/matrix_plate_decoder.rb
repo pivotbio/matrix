@@ -4,8 +4,6 @@ end
 module Decoder
   class MatrixPlateDecoder < Base
 
-    TIMEOUT = 10 # ms
-
     # geometric constants
     S_x  = 530
     S_y  = 800
@@ -14,6 +12,11 @@ module Decoder
     S_w  = 180
     S_h  = 180
     CROP = 10
+
+    def initialize(scan_path, timeout: 5)
+      @timeout = timeout
+      super(scan_path)
+    end
 
     private
 
@@ -27,8 +30,12 @@ module Decoder
       @rdmtx ||= Rdmtx.new
     end
 
+    def timeout
+      @timeout
+    end
+
     def scan_well well
-      decoder.decode(well, TIMEOUT).first
+      decoder.decode(well, timeout).first
     end
 
     # yield wells as separate images
