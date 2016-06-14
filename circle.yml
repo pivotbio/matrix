@@ -8,7 +8,7 @@ dependencies:
 
 test:
   override:
-    - docker run --entrypoint 'bundle exec rspec' pivot/matrix
+    - docker run --entrypoint '/bin/bash' pivot/matrix -c "rspec"
 
 deployment:
   staging:
