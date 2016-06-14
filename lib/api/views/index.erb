@@ -1,0 +1,84 @@
+<% COLOR = "hsla(#{rand(255)}, 50%, 45%, 0.2)" %>
+
+<html>
+  <head>
+    <title>Matrix Scanner</title>
+    <style type="text/css">
+      body {
+        font-family: "Lucida Console", Monaco, monospace;
+        background-color: <%= COLOR %>;
+        margin: 25 auto;
+        width: 420px;
+      }
+
+      input {
+        font-size: 24px;
+        color: <%= COLOR %>;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 4px;
+        background-color: <%= COLOR %>;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      h1 {
+        color: <%= COLOR %>;
+        text-align: center;
+      }
+
+      td {
+        border-bottom: 1px solid <%= COLOR %>;
+      }
+
+      table {
+        width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+
+  <h1>Plate Scanner</h1>
+
+  <form action="/" method="POST" enctype="multipart/form-data" class="form">
+    <div class="input-group">
+      <label>Scan</label>
+      <input type="file" name="image">
+    </div>
+    <div class="input-group">
+      <label>Sensitivity (<span id="textInput">50</span> ms)</label>
+      <input name="timeout" min="10" max="1000" step="10" value="50" onchange="updateTextInput(this.value);">
+    </div>
+    <div class="input-group">
+      <input type="submit">
+    </div>
+  </form>
+
+  <script type="text/javascript">
+    function updateTextInput(val) {
+      document.getElementById('textInput').innerHTML = val; 
+    }
+  </script>
+
+  <% unless @codes.nil? %>
+    <h1>Result</h1>
+    <table>
+      <tbody>
+        <% @codes.each do |cell, value| %>
+          <tr>
+            <td><%= cell || '??' %></td>
+            <td><%= value || '&nbsp;' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+</body>
