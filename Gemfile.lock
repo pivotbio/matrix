@@ -24,7 +24,6 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
-    ruby-opencv (0.0.16)
     slop (3.6.0)
 
 PLATFORMS
@@ -35,7 +34,6 @@ DEPENDENCIES
   pry
   rmagick
   rspec
-  ruby-opencv
 
 BUNDLED WITH
    1.11.2
