@@ -12,7 +12,6 @@
       }
 
       .box {
-        margin-bottom: 10px;
         padding: 10px;
       }
 
@@ -34,7 +33,7 @@
         text-align: center;
       }
 
-      td {
+      .results-table td {
         border-bottom: 1px solid <%= COLOR %>;
       }
 
@@ -69,6 +68,27 @@
       .button:hover {
         background-color: <%= COLOR %>;
       }
+
+      .cell-bad {
+        background-color: hsla(0, 100%, 50%, 0.5);
+      }
+
+      .cell-good {
+        background-color: hsla(0, 0%, 80%, 0.5);
+      }
+
+      .missing-wells {
+        font-size: 8px;
+      }
+
+      .missing-wells td {
+        height: 24px;
+        width: 12px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 2px;
+      }
+
     </style>
   </head>
   <body>
@@ -117,15 +137,36 @@
   </script>
 
   <% unless @codes.nil? %>
+
     <div class="panel">
       <div class="box">
-        <label>Result</label>
+        <label>Scan Overview</label>
+      </div>
+      <div class="box">
+        <table class="missing-wells">
+          <% @codes.each_slice(12) do |row| %>
+            <tr>
+              <% row.each do |cell, value| %>
+                <td class="<%= value.nil? ? 'cell-bad' : 'cell-good'%>">
+                  <%= cell %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="panel">
+      <div class="box">
+        <label>Results</label>
       </div>
       <div class="box">
         <%= @codes.values.count(nil) %> missing.
       </div>
       <div class="box">
-        <table>
+        <table class="results-table">
           <tbody>
             <% @codes.each do |cell, value| %>
               <tr>
