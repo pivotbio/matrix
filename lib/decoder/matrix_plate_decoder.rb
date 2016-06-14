@@ -23,7 +23,7 @@ module Decoder
     def scan_plate
       result =
         well_images.map do |i, j, well|
-          [ "#{(i+65).chr}#{j}", scan_well(well) ]
+          [ "#{(j+65).chr}#{i+1}", scan_well(well) ]
         end
       result = Hash[result]
     end
