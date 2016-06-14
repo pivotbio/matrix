@@ -7,7 +7,7 @@ RUN apt-get install -y \
   libpq-dev \
   imagemagick \
   libmagickwand-dev \
-  dmtx-utils
+  libdmtx-dev
 
 ADD . /app
 WORKDIR /app
