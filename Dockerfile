@@ -11,3 +11,5 @@ ADD . /app
 WORKDIR /app
 
 RUN bundle install
+
+ENTRYPOINT ["./app"]
