@@ -43,7 +43,10 @@ module Decoder
             cell = image.crop(x + CROP,
                               y + CROP,
                               S_w - CROP,
-                              S_h - CROP)
+                              S_h - CROP).
+                              contrast.
+                              negate.
+                              quantize(256)
 
             enum.yield(row, col, cell)
           end
