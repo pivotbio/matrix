@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rmagick'
-gem 'Rdmtx'
+gem 'mini_magick'
+gem 'zxing'
 
-gem 'ruby-opencv'
 gem 'rspec', group: :test
 gem 'pry', group: [:development, :test]

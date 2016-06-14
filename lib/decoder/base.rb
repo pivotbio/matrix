@@ -15,7 +15,8 @@ module Decoder
     end
 
     def image
-      @image ||= Magick::ImageList.new(scan_path)
+      # always return a new copy of the image
+      MiniMagick::Image.open(scan_path)
     end
 
     def scan_plate

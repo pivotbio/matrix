@@ -1,8 +1,3 @@
-require 'rmagick'
-require 'Rdmtx'
-require 'pry'
-require 'opencv'
-
 class ScanFailed < Exception
 end
 
@@ -18,24 +13,23 @@ module Decoder
     S_by = 34
     S_w  = 180
     S_h  = 180
-    CROP = 20
 
     private
 
     def scan_plate
       well_images.map do |i, j, well|
-        value = scan_well(well)
+        value = decode(well)
         well.write("#{i}-#{j}-#{value || 'nil'}.jpeg")
         value
       end
     end
 
-    def rdmtx
-      @rdmtx ||= Rdmtx.new
+    def matrix_decoder
+      ZXing
     end
 
-    def scan_well well
-      rdmtx.decode(well, TIMEOUT).first
+    def decode well
+      matrix_decoder.decode(well)
     end
 
     # yield wells as separate images
@@ -45,11 +39,7 @@ module Decoder
           8.times.map do |col|
             x = S_x + (col * S_bx) + (col * S_w)
             y = S_y + (row * S_by) + (row * S_h)
-            cell = image.crop(x + CROP,
-                              y + CROP,
-                              S_w - CROP,
-                              S_h - CROP)
-
+            cell = image.crop("#{S_w}x#{S_h}+#{x}+#{y}")
             enum.yield(row, col, cell)
           end
         end
