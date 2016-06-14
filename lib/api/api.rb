@@ -8,7 +8,7 @@ module Decoder
     end
 
     get '/' do
-      'example usage'
+      erb :index
     end
 
     post '/' do

@@ -9,7 +9,7 @@ describe Decoder::API do
     Decoder::API
   end
 
-  it 'has a home page' do
+  it 'has a home page', focus: true do
     get('/')
     expect(last_response).to be_ok
   end
