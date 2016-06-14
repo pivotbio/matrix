@@ -21,9 +21,11 @@ module Decoder
     private
 
     def scan_plate
-      well_images.map do |i, j, well|
-        scan_well(well)
-      end
+      result =
+        well_images.map do |i, j, well|
+          [ "#{(i+65).chr}#{j}", scan_well(well) ]
+        end
+      result = Hash[result]
     end
 
     def decoder
@@ -42,7 +44,7 @@ module Decoder
     def well_images
       Enumerator.new do |enum|
         12.times.map do |row|
-          8.times.map do |col|
+          8.times.each do |col|
             x = S_x + (col * S_bx) + (col * S_w)
             y = S_y + (row * S_by) + (row * S_h)
             cell = image.crop(x + CROP,
@@ -53,7 +55,7 @@ module Decoder
                               negate.
                               quantize(256)
 
-            enum.yield(row, col, cell)
+            enum.yield([row, col, cell])
           end
         end
       end

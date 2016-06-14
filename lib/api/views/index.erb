@@ -5,7 +5,7 @@
     <title>Matrix Scanner</title>
     <style type="text/css">
       body {
-        font-family: sans-serif;
+        font-family: "Lucida Console", Monaco, monospace;
         background-color: <%= COLOR %>;
         margin: 25 auto;
         width: 420px;
@@ -30,7 +30,17 @@
 
       h1 {
         color: <%= COLOR %>;
+        text-align: center;
       }
+
+      td {
+        border-bottom: 1px solid <%= COLOR %>;
+      }
+
+      table {
+        width: 100%;
+      }
+
     </style>
   </head>
   <body>
@@ -43,18 +53,32 @@
       <input type="file" name="image">
     </div>
     <div class="input-group">
-      <label>Timeout (<span id="textInput">50</span> ms)</label>
-      <input type="range" min="10" max="1000" timeout="delay" step="10" value="50" onchange="updateTextInput(this.value);">
+      <label>Sensitivity (<span id="textInput">50</span> ms)</label>
+      <input name="timeout" min="10" max="1000" step="10" value="50" onchange="updateTextInput(this.value);">
     </div>
     <div class="input-group">
       <input type="submit">
     </div>
   </form>
 
-<script type="text/javascript">
-  function updateTextInput(val) {
-    document.getElementById('textInput').innerHTML = val; 
-  }
-</script>
+  <script type="text/javascript">
+    function updateTextInput(val) {
+      document.getElementById('textInput').innerHTML = val; 
+    }
+  </script>
+
+  <% unless @codes.nil? %>
+    <h1>Result</h1>
+    <table>
+      <tbody>
+        <% @codes.each do |cell, value| %>
+          <tr>
+            <td><%= cell || '??' %></td>
+            <td><%= value || '&nbsp;' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 
 </body>
