@@ -4,7 +4,7 @@ end
 module Decoder
   class MatrixPlateDecoder < Base
 
-    TIMEOUT = 100 # ms
+    TIMEOUT = 500 # ms
 
     # geometric constants
     S_x  = 530
@@ -13,14 +13,14 @@ module Decoder
     S_by = 34
     S_w  = 180
     S_h  = 180
-    CROP = 20
+    CROP = 10
 
     private
 
     def scan_plate
       well_images.map do |i, j, well|
         value = scan_well(well)
-        well.write("#{i}-#{j}-#{value || 'nil'}.jpeg")
+        well.write("#{i}-#{j}-#{value || 'nil'}.png")
         value
       end
     end

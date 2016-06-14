@@ -8,6 +8,6 @@ describe Decoder::MatrixPlateDecoder do
   end
 
   it '#codes returns an array' do
-    expect(decoder.codes.count(nil)).to eq(34)
+    expect(decoder.codes.count(nil)).to eq(35)
   end
 end
