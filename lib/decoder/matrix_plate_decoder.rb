@@ -1,8 +1,3 @@
-require 'rmagick'
-require 'Rdmtx'
-require 'pry'
-require 'opencv'
-
 class ScanFailed < Exception
 end
 

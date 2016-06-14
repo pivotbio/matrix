@@ -1,3 +1,6 @@
+require 'bundler'
+Bundler.require
+
 module Decoder
 end
 
