@@ -25,12 +25,12 @@ module Decoder
       end
     end
 
-    def rdmtx
+    def decoder
       @rdmtx ||= Rdmtx.new
     end
 
     def scan_well well
-      rdmtx.decode(well, TIMEOUT).first
+      decoder.decode(well, TIMEOUT).first
     end
 
     # yield wells as separate images
