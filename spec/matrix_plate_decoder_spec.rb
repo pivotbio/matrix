@@ -8,6 +8,7 @@ describe Decoder::MatrixPlateDecoder do
   end
 
   it '#codes returns an array' do
+    skip 'slow'
     expect(decoder.codes.count(nil)).to eq(7)
   end
 end

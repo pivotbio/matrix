@@ -4,7 +4,7 @@ end
 module Decoder
   class MatrixPlateDecoder < Base
 
-    TIMEOUT = 500 # ms
+    TIMEOUT = 10 # ms
 
     # geometric constants
     S_x  = 530
