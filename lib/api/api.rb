@@ -16,6 +16,7 @@ module Decoder
       image_path = params[:image][:tempfile].path
       timeout = params[:timeout]
       @codes = MatrixPlateDecoder.new(image_path, timeout: timeout).codes
+      @codes = @codes.sort_by(&:first) # sort by well
       erb :index
     end
   end

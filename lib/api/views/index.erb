@@ -163,7 +163,7 @@
         <label>Results</label>
       </div>
       <div class="box">
-        <%= @codes.values.count(nil) %> missing.
+        <%= @codes.map(&:last).count(nil) %> missing.
       </div>
       <div class="box">
         <table class="results-table">

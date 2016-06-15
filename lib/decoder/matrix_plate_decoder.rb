@@ -1,6 +1,30 @@
 class ScanFailed < Exception
 end
 
+class PlateWell
+
+  attr_accessor :row, :column
+
+  def initialize row, column
+    @row = row # A ... H
+    @column = column # 1 ... 12
+  end
+
+  def <=> other
+    # sort by row, then by column
+    case row <=> other.row
+    when 0
+      column <=> other.column
+    else
+      row <=> other.row
+    end
+  end
+
+  def to_s
+    "#{row}#{column}"
+  end
+end
+
 module Decoder
   class MatrixPlateDecoder < Base
 
@@ -21,11 +45,9 @@ module Decoder
     private
 
     def scan_plate
-      result =
-        well_images.map do |i, j, well|
-          [ "#{(j+65).chr}#{i+1}", scan_well(well) ]
-        end
-      result = Hash[result]
+      well_images.map do |well, image|
+        [ well, scan_image(image) ]
+      end
     end
 
     def decoder
@@ -36,8 +58,8 @@ module Decoder
       @timeout
     end
 
-    def scan_well well
-      decoder.decode(well, timeout).first
+    def scan_image image
+      decoder.decode(image, timeout).first
     end
 
     # yield wells as separate images
@@ -47,6 +69,7 @@ module Decoder
           8.times.each do |col|
             x = S_x + (col * S_bx) + (col * S_w)
             y = S_y + (row * S_by) + (row * S_h)
+            well = PlateWell.new((col+65).chr, row+1)
             cell = image.crop(x + CROP,
                               y + CROP,
                               S_w - CROP,
@@ -55,7 +78,7 @@ module Decoder
                               negate.
                               quantize(256)
 
-            enum.yield([row, col, cell])
+            enum.yield([well, cell])
           end
         end
       end
