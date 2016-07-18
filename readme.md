@@ -26,6 +26,10 @@ bundle exec rspec
 
 See `Dockerfile` for inspiration.
 
+### Heroku
+
+Heroku will use the `Aptfile` to install dependencies.
+
 # License
 
 MIT. See LICENSE.md for details.
