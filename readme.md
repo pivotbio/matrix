@@ -24,3 +24,7 @@ bundle exec rspec
 ### Linux
 
 See `Dockerfile` for inspiration.
+
+# License
+
+MIT. See LICENSE.md for details.
